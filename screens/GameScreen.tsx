@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {JoinRoom} from "./game/JoinScreen";
 import {LobbyScreen} from "./game/LobbyScreen";
+import {SERVER_URL} from '../constants/Server';
+import axios from 'axios'
 
 
 export default function GameScreen() {
@@ -14,10 +16,12 @@ export default function GameScreen() {
         setView(('Join'));
     };
 
-    const joinRoom = (room, username) => {
+    const joinRoom = async (room, username) => {
         setRoomName(room);
         setUserName(username);
-        setView('Lobby')
+        const response = await axios.post(`${SERVER_URL}/api/room/join`);
+        console.log(response);
+        // setView('Lobby')
     };
 
     switch (view) {
