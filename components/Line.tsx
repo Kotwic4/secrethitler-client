@@ -4,7 +4,7 @@ import {Image, StyleSheet,} from 'react-native';
 const LINE = require('../assets/images/line.png');
 
 
-export default function Line() {
+export function Line() {
     return (
         <Image
             resizeMode="contain"

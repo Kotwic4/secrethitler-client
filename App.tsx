@@ -5,10 +5,11 @@ import * as Font from 'expo-font';
 import {Ionicons} from '@expo/vector-icons';
 import {NavigationContainer} from '@react-navigation/native';
 
-import HomeScreen from "./screens/HomeScreen";
+import GameScreen from "./screens/GameScreen";
 import {createDrawerNavigator} from "@react-navigation/drawer";
 import SettingsScreen from "./screens/SettingsScreen";
 import AboutScreen from "./screens/AboutScreen";
+import RuleScreen from "./screens/RuleScreen";
 
 const Drawer = createDrawerNavigator();
 
@@ -47,8 +48,9 @@ export default function App(props) {
                 {Platform.OS === 'ios' && <StatusBar barStyle="default"/>}
                 <NavigationContainer ref={containerRef}>
                     <Drawer.Navigator>
-                        <Drawer.Screen name="Home" component={HomeScreen}/>
+                        <Drawer.Screen name="Game" component={GameScreen}/>
                         <Drawer.Screen name="Settings" component={SettingsScreen}/>
+                        <Drawer.Screen name="Rules" component={RuleScreen}/>
                         <Drawer.Screen name="About" component={AboutScreen}/>
                     </Drawer.Navigator>
                 </NavigationContainer>

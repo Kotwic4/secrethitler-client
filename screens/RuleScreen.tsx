@@ -5,7 +5,7 @@ import {SmallLayout} from "./Layout";
 export default function SettingsScreen() {
     return (
         <SmallLayout>
-            <CourierText>Settings</CourierText>
+            <CourierText>Rules</CourierText>
         </SmallLayout>
     );
 }
