@@ -4,7 +4,16 @@ import {StyledButton} from "../../components/StyledButton";
 import {SmallLayout} from "../Layout";
 import {CourierText} from "../../components/CourierText";
 
-export function LobbyScreen({leaveRoom, roomName, admins, players, spectators, userName}) {
+const filterUsers = (state, role) => {
+    return Object.values(state.peers.entries).filter(e => e.role == role).map(e => e.player_name);
+};
+
+export function LobbyScreen({leaveRoom, state, userName}) {
+    const roomName = state.room_code;
+    const admins = filterUsers(state, 'admin');
+    const players = filterUsers(state, 'player');
+    const spectators = filterUsers(state, 'spectator');
+
     return (
         <SmallLayout>
             <CourierText>Room: {roomName}</CourierText>
@@ -27,12 +36,6 @@ export function LobbyScreen({leaveRoom, roomName, admins, players, spectators, u
         </SmallLayout>
     );
 }
-
-LobbyScreen.defaultProps = {
-    admins: [],
-    players: [],
-    spectators: [],
-};
 
 const styles = StyleSheet.create({
     sectionHeader: {
