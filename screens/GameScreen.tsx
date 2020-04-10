@@ -17,11 +17,13 @@ export default function GameScreen() {
     };
 
     const joinRoom = async (room, username) => {
+        const data = {roomCode: room, playerName: username, requestRole: "admin"};
+        const response = await axios.post(`${SERVER_URL}/api/room/join`, data);
+        const {token, channel} = response.data;
+        console.log(token, channel);
         setRoomName(room);
         setUserName(username);
-        const response = await axios.post(`${SERVER_URL}/api/room/join`);
-        console.log(response);
-        // setView('Lobby')
+        setView('Lobby')
     };
 
     switch (view) {
