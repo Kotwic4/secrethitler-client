@@ -6,7 +6,6 @@ import {ChancellorVotingScreen} from "./game/ChancellorVotingScreen";
 import {SERVER_URL, WEBSOCKET_URL} from '../constants/Server';
 import { sendCommand } from '../utils/sendCommand';
 
-
 export default function GameScreen() {
     const [view, setView] = useState('Join');
     const [userName, setUserName] = useState('');
@@ -28,7 +27,6 @@ export default function GameScreen() {
     };
 
     const onLeaveRoom = () => {
-        console.log("ON LEAVE ROOM");
         socket.disconnect();
         setUserName('');
         setState({});
@@ -36,7 +34,6 @@ export default function GameScreen() {
     };
 
     const onJoin = (payload, socket, channel) => {
-        console.log("payload", payload);
         setState(payload.state);
         setUserName(payload.approved_player_name);
         setSocket(socket);
