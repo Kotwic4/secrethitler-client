@@ -3,16 +3,15 @@ import {SectionList, StyleSheet} from 'react-native';
 import {StyledButton} from "../../components/StyledButton";
 import {SmallLayout} from "../Layout";
 import {CourierText} from "../../components/CourierText";
+import {sendCommand} from '../../utils/sendCommand';
+import {filterUsers} from '../../utils/filterUsers';
 
-const filterUsers = (state, role) => {
-    return Object.values(state.peers.entries).filter(e => e.role == role).map(e => e.player_name);
-};
-
-export function LobbyScreen({leaveRoom, state, userName}) {
+export function LobbyScreen({onLeaveRoom, channel, state, userName}) {
     const roomName = state.room_code;
     const admins = filterUsers(state, 'admin');
     const players = filterUsers(state, 'player');
     const spectators = filterUsers(state, 'spectator');
+    const startGame = () => sendCommand(channel, {action: "start_game"});
 
     return (
         <SmallLayout>
@@ -29,9 +28,10 @@ export function LobbyScreen({leaveRoom, state, userName}) {
                 renderSectionHeader={({section}) => <CourierText
                     style={styles.sectionHeader}>{section.title}({section.data.length}):</CourierText>}
             />
+            <StyledButton text="START" onPress={startGame}/>
             <StyledButton
                 text="Leave Room"
-                onPress={leaveRoom}
+                onPress={onLeaveRoom}
             />
         </SmallLayout>
     );

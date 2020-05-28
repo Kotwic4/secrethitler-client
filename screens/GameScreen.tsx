@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {JoinRoom} from "./game/JoinScreen";
 import {LobbyScreen} from "./game/LobbyScreen";
+import {ChancellorNominationScreen} from "./game/ChancellorNominationScreen";
+import {ChancellorVotingScreen} from "./game/ChancellorVotingScreen";
 import {SERVER_URL, WEBSOCKET_URL} from '../constants/Server';
-import axios from 'axios'
-
-import { Socket } from 'phoenix';
+import { sendCommand } from '../utils/sendCommand';
 
 
 export default function GameScreen() {
@@ -14,73 +14,59 @@ export default function GameScreen() {
     const [channel, setChannel] = useState();
     const [socket, setSocket] = useState();
 
-    const leaveRoom = () => {
+    const onMutation = (payload) => {
+        setState(payload.state);
+        console.log('MUTATION', payload);
+
+        if (payload.mutation.action === "start_game") {
+            if (payload.state.game.president === payload.player) {
+                setView('ChancellorNomination');
+            } else {
+                setView('ChancellorVoting');
+            }
+        }
+    };
+
+    const onLeaveRoom = () => {
+        console.log("ON LEAVE ROOM");
         socket.disconnect();
         setUserName('');
         setState({});
         setView(('Join'));
     };
 
-    const joinRoom = async (room, username) => {
-        const data = {roomCode: room, playerName: username, requestRole: "admin"};
-        const response = await axios.post(`${SERVER_URL}/api/room/join`, data);
-        const {token, channel: channelName} = response.data;
-
-        console.log(`${WEBSOCKET_URL}/socket`);
-
-        const socket = new Socket(`${WEBSOCKET_URL}/socket`);
-        // var ws = new WebSocket("wss://hitlar.tk/socket/websocket?vsn=2.0.0");
-
-        socket.onError(e => {
-            console.log('Socket failed', e);
-        });
-
-        socket.onClose(() => {
-            console.log('Socket closed');
-        });
-
-        socket.connect();
-
-        const channel = socket.channel(channelName, { token });
-
-        channel.on('mutation', payload => {
-            console.log('mutation', payload);
-            setState(payload.state);
-        });
-
-        channel.onError(e => {
-            console.log('channel failed', e);
-        });
-
-        channel.onClose(() => {
-            console.log('channel closed');
-        });
-
-        channel.join()
-            .receive('ok', (res) => {
-                console.log('joined', res);
-                setState(res.state);
-                setUserName(res.approved_player_name);
-                setSocket(socket);
-                setChannel(channel);
-                setView('Lobby');
-            })
-            .receive('error', err => {
-                console.error(err);
-            })
-            .receive('timeout', () => console.error('Connection timed out'));
+    const onJoin = (payload, socket, channel) => {
+        console.log("payload", payload);
+        setState(payload.state);
+        setUserName(payload.approved_player_name);
+        setSocket(socket);
+        setChannel(channel);
+        setView('Lobby');
     };
 
     switch (view) {
         case 'Join':
             return <JoinRoom
-                joinRoom={joinRoom}
+                onMutation={onMutation}
+                onJoin={onJoin}
             />;
         case 'Lobby':
             return <LobbyScreen
-                leaveRoom={leaveRoom}
+                onLeaveRoom={onLeaveRoom}
+                channel={channel}
                 state={state}
                 userName={userName}
+            />
+        case 'ChancellorNomination':
+            return <ChancellorNominationScreen
+                state={state}
+                channel={channel}
+                userName={userName}
+            />
+        case 'ChancellorVoting':
+            return <ChancellorVotingScreen
+                state={state}
+                channel={channel}
             />
     }
 }
