@@ -1,29 +1,41 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Text, View} from 'react-native';
 import {StyledButton} from "../../components/StyledButton";
 import {SmallLayout} from "../Layout";
 import {CourierText} from "../../components/CourierText";
-import {sendCommand} from "../../utils/sendCommand";
 
-export function ChancellorVotingScreen({state, channel}) {
+export function ChancellorVotingScreen({state, sendCommand}) {
+    const [alreadyVoted, setAlreadyVoted] = useState(false);
+    const [vote, setVote] = useState();
     const nominateChancellor = (vote) => {
-        sendCommand(channel, {
+        sendCommand({
             action: "vote_government",
             vote
         });
+
+        setAlreadyVoted(true);
+        setVote(vote ? "YES" : "NO");
     };
 
-    return (
-        <SmallLayout>
-            <CourierText>ChancellorVotingScreen</CourierText>
-            {state.state === "nominating_chancellor" && <Text>Waiting for chancellor nomination</Text>}
-            {state.state === "voting_government" &&
+    if (alreadyVoted) {
+        return (
+            <SmallLayout>
+                <CourierText>ChancellorVotingScreen</CourierText>
                 <View>
-                    <Text>Vote for {state.chancellor}</Text>
+                    <Text>Waiting for other players to vote. Your vote is ({vote})</Text>
+                </View>
+            </SmallLayout>
+        );
+    } else {
+        return (
+            <SmallLayout>
+                <CourierText>ChancellorVotingScreen</CourierText>
+                <View>
+                    <Text>Vote for {state.game.chancellor}</Text>
                     <StyledButton text="YES" onPress={() => nominateChancellor(true)} />
                     <StyledButton text="NO" onPress={() => nominateChancellor(false)} />
                 </View>
-            }
-        </SmallLayout>
-    );
+            </SmallLayout>
+        );
+    }
 }

@@ -5,9 +5,9 @@ import {ChancellorNominationScreen} from "./game/ChancellorNominationScreen";
 import {ChancellorVotingScreen} from "./game/ChancellorVotingScreen";
 import {SERVER_URL, WEBSOCKET_URL} from '../constants/Server';
 import { sendCommand } from '../utils/sendCommand';
+import {ActionScreen} from "./game/ActionScreen";
 
 export default function GameScreen() {
-    const [view, setView] = useState('Join');
     const [userName, setUserName] = useState('');
     const [state, setState] = useState({});
     const [channel, setChannel] = useState();
@@ -16,21 +16,14 @@ export default function GameScreen() {
     const onMutation = (payload) => {
         setState(payload.state);
         console.log('MUTATION', payload);
-
-        if (payload.mutation.action === "start_game") {
-            if (payload.state.game.president === payload.player) {
-                setView('ChancellorNomination');
-            } else {
-                setView('ChancellorVoting');
-            }
-        }
     };
 
     const onLeaveRoom = () => {
         socket.disconnect();
+        setChannel(null);
+        setSocket(null);
         setUserName('');
         setState({});
-        setView(('Join'));
     };
 
     const onJoin = (payload, socket, channel) => {
@@ -38,32 +31,27 @@ export default function GameScreen() {
         setUserName(payload.approved_player_name);
         setSocket(socket);
         setChannel(channel);
-        setView('Lobby');
     };
 
-    switch (view) {
-        case 'Join':
-            return <JoinRoom
-                onMutation={onMutation}
-                onJoin={onJoin}
-            />;
-        case 'Lobby':
-            return <LobbyScreen
-                onLeaveRoom={onLeaveRoom}
-                channel={channel}
-                state={state}
-                userName={userName}
-            />
-        case 'ChancellorNomination':
-            return <ChancellorNominationScreen
-                state={state}
-                channel={channel}
-                userName={userName}
-            />
-        case 'ChancellorVoting':
-            return <ChancellorVotingScreen
-                state={state}
-                channel={channel}
-            />
+    const sendCommandPartially = (command) => sendCommand(channel, command);
+
+    if (!socket) {
+        return <JoinRoom
+            onMutation={onMutation}
+            onJoin={onJoin}
+        />;
+    } else if (state.game.state === "awaiting_players") {
+        return <LobbyScreen
+            onLeaveRoom={onLeaveRoom}
+            sendCommand={sendCommandPartially}
+            state={state}
+            userName={userName}
+        />
+    } else {
+        return <ActionScreen
+            sendCommand={sendCommandPartially}
+            state={state}
+            userName={userName}
+        />
     }
 }
