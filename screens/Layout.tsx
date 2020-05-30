@@ -6,7 +6,7 @@ import {Line} from "../components/Line";
 export function SmallLayout({children}) {
     return (
         <View style={styles.container}>
-            <SmallLogo style={styles.smallLogo}/>
+            <SmallLogo/>
             <Line/>
             <View style={styles.childContainer}>
                 {children}
@@ -18,7 +18,7 @@ export function SmallLayout({children}) {
 export function BigLayout({children}) {
     return (
         <View style={styles.container}>
-            <BigLogo style={styles.bigLogo}/>
+            <BigLogo/>
             <Line/>
             <View style={styles.childContainer}>
                 {children}
@@ -39,18 +39,8 @@ const styles = StyleSheet.create({
     childContainer: {
         flex: 1,
         display: "flex",
-        width: "100%"
-    },
-    bigLogo: {
-        marginTop: 25,
-        marginBottom: 25,
-        width: 370,
-        height: 200
-    },
-    smallLogo: {
-        marginTop: 25,
-        marginBottom: 10,
-        width: 185/2,
-        height: 100/2
+        width: "100%",
+        padding: "2.5%",
+        paddingBottom: 0
     }
 });

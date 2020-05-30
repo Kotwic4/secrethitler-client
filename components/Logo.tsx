@@ -8,7 +8,7 @@ export function BigLogo(props) {
         <Image
             resizeMode="contain"
             source={LOGO}
-            style={{width: 370, height: 200}}
+            style={{marginTop: 25, marginBottom: 25, width: 370, height: 200}}
             {...props}
         />
     )
@@ -19,7 +19,7 @@ export function SmallLogo(props) {
         <Image
             resizeMode="contain"
             source={LOGO}
-            style={{width: 185, height: 100}}
+            style={{marginTop: 25, marginBottom: 10, width: 185/2, height: 100/2}}
             {...props}
         />
     )

@@ -74,10 +74,10 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     input: {
-        width: "50%",
+        width: "100%",
         borderRadius: 5,
         borderWidth: 1,
-        borderColor: "black",
+        borderColor: "#434343",
         padding: 10,
         backgroundColor: "white",
         height: 40
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
     button: {
-        width: "50%",
+        width: "100%",
         marginTop: 10
     }
 });
