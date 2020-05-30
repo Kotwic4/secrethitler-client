@@ -1,41 +1,60 @@
 import React, {useState} from 'react';
-import {Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {StyledButton} from "../../components/StyledButton";
 import {SmallLayout} from "../Layout";
-import {CourierText} from "../../components/CourierText";
+import {PlayerBox} from "../../components/PlayerBox";
+import {Title} from "../../components/Title";
+import {filterUsers} from "../../utils/filterUsers";
 
-export function ChancellorVotingScreen({state, sendCommand}) {
+export function ChancellorVotingScreen({state, sendCommand, userName}) {
     const [alreadyVoted, setAlreadyVoted] = useState(false);
     const [vote, setVote] = useState();
-    const nominateChancellor = (vote) => {
+    const voteForChancellor = (vote) => {
         sendCommand({
             action: "vote_government",
             vote
         });
 
         setAlreadyVoted(true);
-        setVote(vote ? "YES" : "NO");
+        setVote(vote ? "Yes" : "No");
     };
+    const getVote = (player) => {
+        return state.game.players[player].vote;
+    };
+    const players = filterUsers(state, 'player');
+    const players_boxes = players.map(user_name => {
+        return <PlayerBox userName={userName} player={user_name} vote={getVote(user_name)}/>;
+    });
 
     if (alreadyVoted) {
         return (
             <SmallLayout>
-                <CourierText>ChancellorVotingScreen</CourierText>
-                <View>
-                    <Text>Waiting for other players to vote. Your vote is ({vote})</Text>
+                <Title>Waiting for other players to vote. Your vote is ({vote})</Title>
+                <View style={styles.playersContainer}>
+                    {players_boxes}
                 </View>
             </SmallLayout>
         );
     } else {
         return (
             <SmallLayout>
-                <CourierText>ChancellorVotingScreen</CourierText>
+                <Title>Vote for {state.game.chancellor}</Title>
                 <View>
-                    <Text>Vote for {state.game.chancellor}</Text>
-                    <StyledButton text="YES" onPress={() => nominateChancellor(true)} />
-                    <StyledButton text="NO" onPress={() => nominateChancellor(false)} />
+                    <StyledButton text="YES" onPress={() => voteForChancellor(true)} />
+                    <View style={{marginTop: 10}}>
+                        <StyledButton text="NO" onPress={() => voteForChancellor(false)} />
+                    </View>
                 </View>
             </SmallLayout>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    playersContainer: {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-around"
+    }
+});
