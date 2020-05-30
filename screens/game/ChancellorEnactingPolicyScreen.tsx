@@ -4,34 +4,33 @@ import {SmallLayout} from "../Layout";
 import {CourierText} from "../../components/CourierText";
 import {filterUsers} from '../../utils/filterUsers';
 
-export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
-    const [top3Cards, setTop3Cards] = useState(state.game.policy_stack.slice(0, 3));
+export function ChancellorEnactingPolicyScreen({state, sendCommand, userName}) {
+    const [top2Cards, setTop2Cards] = useState(state.game.policy_stack.slice(0, 2));
     const pickCards = (withoutCardIndex) => {
-        const pickedCards = [...top3Cards];
+        const pickedCards = [...top2Cards];
         pickedCards.splice(withoutCardIndex, 1);
 
         sendCommand({
-            action: "president_pick_policies",
-            policies: pickedCards,
-            veto_request: false
+            action: "chancellor_enacted_policy",
+            enacted: pickedCards
         })
     };
-    const cards = top3Cards.map((card, index) => {
+    const cards = top2Cards.map((card, index) => {
         return <Text style={styles.card} onPress={() => pickCards(index)}>
             {card}
         </Text>
     });
 
-    if (state.game.president !== userName) {
+    if (state.game.chancellor !== userName) {
         return (
             <SmallLayout>
-                <CourierText>Waiting for president({state.game.president}) to draw policies</CourierText>
+                <CourierText>Waiting for chancellor({state.game.chancellor}) to pick one policiy</CourierText>
             </SmallLayout>
         );
     } else {
         return (
             <SmallLayout>
-                <CourierText>PresidentDrawingPoliciesScreen</CourierText>
+                <CourierText>ChancellorEnactingPolicyScreen</CourierText>
                 {cards}
             </SmallLayout>
         );
@@ -45,5 +44,3 @@ const styles = StyleSheet.create({
         padding: 10
     }
 });
-
-// chancellor_enacted_policy

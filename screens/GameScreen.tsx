@@ -1,8 +1,6 @@
 import React, {useState} from 'react';
 import {JoinRoom} from "./game/JoinScreen";
 import {LobbyScreen} from "./game/LobbyScreen";
-import {ChancellorNominationScreen} from "./game/ChancellorNominationScreen";
-import {ChancellorVotingScreen} from "./game/ChancellorVotingScreen";
 import {SERVER_URL, WEBSOCKET_URL} from '../constants/Server';
 import { sendCommand } from '../utils/sendCommand';
 import {ActionScreen} from "./game/ActionScreen";

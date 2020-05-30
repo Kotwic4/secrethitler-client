@@ -5,6 +5,7 @@ import {filterUsers} from '../../utils/filterUsers';
 import {ChancellorNominationScreen} from "./ChancellorNominationScreen";
 import {ChancellorVotingScreen} from "./ChancellorVotingScreen";
 import {PresidentDrawingPoliciesScreen} from "./PresidentDrawingPoliciesScreen";
+import {ChancellorEnactingPolicyScreen} from "./ChancellorEnactingPolicyScreen";
 
 export function ActionScreen({state, sendCommand, userName}) {
     console.log(state);
@@ -27,6 +28,14 @@ export function ActionScreen({state, sendCommand, userName}) {
             return <PresidentDrawingPoliciesScreen
                 state={state}
                 sendCommand={sendCommand}
+                userName={userName}
+            />;
+
+        case "chancellor_enacting_policy":
+            return <ChancellorEnactingPolicyScreen
+                state={state}
+                sendCommand={sendCommand}
+                userName={userName}
             />;
 
         default:
