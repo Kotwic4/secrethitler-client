@@ -17,7 +17,7 @@ export function Line() {
 
 const styles = StyleSheet.create({
     hr: {
-        width: "90%",
-        height: "10%",
+        width: "95%",
+        height: 4,
     }
 });
