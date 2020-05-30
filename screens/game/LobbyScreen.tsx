@@ -1,10 +1,10 @@
 import React from 'react';
-import {SectionList, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {StyledButton} from "../../components/StyledButton";
 import {SmallLayout} from "../Layout";
-import {CourierText} from "../../components/CourierText";
 import {filterUsers} from '../../utils/filterUsers';
 import {PlayerBox} from "../../components/PlayerBox";
+import {Title} from "../../components/Title";
 
 export function LobbyScreen({onLeaveRoom, sendCommand, state, userName}) {
     const roomName = state.room_code;
@@ -30,7 +30,7 @@ export function LobbyScreen({onLeaveRoom, sendCommand, state, userName}) {
         <SmallLayout>
             <View style={styles.container}>
                 <View>
-                    <CourierText style={styles.title}>Room: {roomName}</CourierText>
+                    <Title>Room: {roomName}</Title>
                     <View style={styles.playersContainer}>
                         {players}
                     </View>
@@ -50,13 +50,6 @@ export function LobbyScreen({onLeaveRoom, sendCommand, state, userName}) {
 }
 
 const styles = StyleSheet.create({
-    title: {
-        textAlign: "center",
-        fontSize: 30,
-        fontWeight: "bold",
-        marginTop: 10,
-        marginBottom: 20
-    },
     container: {
         display: "flex",
         flexDirection: "column",

@@ -1,17 +1,26 @@
 import * as React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
-export function PlayerBox({player, userName, isAlive = true, vote = null}) {
+export function PlayerBox({player, userName, disabled = false, isAlive = true, vote = null, onPress = null}) {
     let voteLayer;
 
     if (vote !== null) {
         voteLayer = <View style={styles.voteLayer}><Text style={styles.voteLayerText}>{vote ? "YES" : "NO"}</Text></View>;
     }
-    return <View style={[styles.container, !isAlive ? styles.notAlive : {}]}>
-        <Text style={styles.text}>{player}</Text>
-        {player === userName && <Text style={styles.youText}>{"(you)"}</Text>}
-        {voteLayer}
-    </View>
+
+    if (onPress === null) {
+        return <View style={[styles.container, !isAlive ? styles.notAlive : {}]}>
+            <Text style={styles.text}>{player}</Text>
+            {player === userName && <Text style={styles.youText}>{"(you)"}</Text>}
+            {voteLayer}
+        </View>
+    } else {
+        return <TouchableOpacity disabled={disabled} onPress={onPress} style={[styles.container, !isAlive ? styles.notAlive : {}]}>
+            <Text style={styles.text}>{player}</Text>
+            {player === userName && <Text style={styles.youText}>{"(you)"}</Text>}
+            {voteLayer}
+        </TouchableOpacity>
+    }
 }
 
 const styles = StyleSheet.create({
