@@ -21,19 +21,19 @@ export function PresidentLooksPoliciesScreen({state, sendCommand, userName}) {
 
     if (state.game.president !== userName) {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Waiting for president ({state.game.president}) to look at policies...</Title>
-            </SmallLayout>
+            </View>
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Look at policies</Title>
                 <View style={styles.cardsContainer}>
                     {cards}
                 </View>
                 <StyledButton text={"Dismiss"} onPress={dismiss} disabled={loading}/>
-            </SmallLayout>
+            </View>
         );
     }
 }

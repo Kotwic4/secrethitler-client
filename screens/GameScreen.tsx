@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import {JoinRoom} from "./game/JoinScreen";
-import {LobbyScreen} from "./game/LobbyScreen";
 import {sendCommand} from '../utils/sendCommand';
-import {ActionScreen} from "./game/ActionScreen";
+import {TabsScreen} from "./game/TabsScreen";
+import {LobbyScreen} from "./game/LobbyScreen";
+import {JoinRoom} from "./game/JoinScreen";
 
 export default function GameScreen() {
     const [userName, setUserName] = useState('');
@@ -45,7 +45,7 @@ export default function GameScreen() {
             userName={userName}
         />
     } else {
-        return <ActionScreen
+        return <TabsScreen
             sendCommand={sendCommandPartially}
             state={state}
             userName={userName}

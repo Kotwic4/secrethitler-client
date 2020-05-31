@@ -21,16 +21,16 @@ export function ExecutionScreen({state, sendCommand, userName}) {
 
     if (state.game.president !== userName) {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Waiting for president ({state.game.president}) to eliminate other player...</Title>
-            </SmallLayout>
+            </View>
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Eliminate player</Title>
                 <View style={styles.playersContainer}>{ players_boxes }</View>
-            </SmallLayout>
+            </View>
         );
     }
 }

@@ -21,16 +21,16 @@ export function ChancellorNominationScreen({state, sendCommand, userName}) {
 
     if (state.game.president !== userName) {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Waiting for president ({state.game.president}) to nominate chancellor...</Title>
-            </SmallLayout>
+            </View>
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Nominate chancellor</Title>
                 <View style={styles.playersContainer}>{ players_boxes }</View>
-            </SmallLayout>
+            </View>
         );
     }
 }

@@ -21,16 +21,16 @@ export function InvestigatingLoyaltyScreen({state, sendCommand, userName}) {
 
     if (state.game.president !== userName) {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Waiting for president ({state.game.president}) to investigate loyalty...</Title>
-            </SmallLayout>
+            </View>
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Check player loyalty</Title>
                 <View style={styles.playersContainer}>{ players_boxes }</View>
-            </SmallLayout>
+            </View>
         );
     }
 }

@@ -37,7 +37,7 @@ export function ChancellorVotingScreen({state, sendCommand, userName}) {
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Vote for {state.game.chancellor}</Title>
                 <View>
                     <StyledButton text="YES" onPress={() => voteForChancellor(true)} />
@@ -45,7 +45,7 @@ export function ChancellorVotingScreen({state, sendCommand, userName}) {
                         <StyledButton text="NO" onPress={() => voteForChancellor(false)} />
                     </View>
                 </View>
-            </SmallLayout>
+            </View>
         );
     }
 }

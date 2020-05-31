@@ -29,12 +29,12 @@ export function ChancellorEnactingPolicyScreen({state, sendCommand, userName}) {
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Enact policy</Title>
                 <View style={styles.cardsContainer}>
                     {cards}
                 </View>
-            </SmallLayout>
+            </View>
         );
     }
 }

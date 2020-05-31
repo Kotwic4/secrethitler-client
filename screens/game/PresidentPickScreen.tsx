@@ -21,16 +21,16 @@ export function PresidentPickScreen({state, sendCommand, userName}) {
 
     if (state.game.president !== userName) {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Waiting for president ({state.game.president}) to pick next president...</Title>
-            </SmallLayout>
+            </View>
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Pick next president</Title>
                 <View style={styles.playersContainer}>{ players_boxes }</View>
-            </SmallLayout>
+            </View>
         );
     }
 }

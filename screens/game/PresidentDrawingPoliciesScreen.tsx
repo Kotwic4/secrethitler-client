@@ -25,18 +25,18 @@ export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
 
     if (state.game.president !== userName) {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Waiting for president ({state.game.president}) to draw policies...</Title>
-            </SmallLayout>
+            </View>
         );
     } else {
         return (
-            <SmallLayout>
+            <View>
                 <Title>Draw policy</Title>
                 <View style={styles.cardsContainer}>
                     {cards}
                 </View>
-            </SmallLayout>
+            </View>
         );
     }
 }
