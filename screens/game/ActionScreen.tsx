@@ -8,8 +8,6 @@ import {PresidentDrawingPoliciesScreen} from "./PresidentDrawingPoliciesScreen";
 import {ChancellorEnactingPolicyScreen} from "./ChancellorEnactingPolicyScreen";
 
 export function ActionScreen({state, sendCommand, userName}) {
-    console.log(state);
-
     switch (state.game.state) {
         case "nominating_chancellor":
             return <ChancellorNominationScreen
@@ -22,6 +20,7 @@ export function ActionScreen({state, sendCommand, userName}) {
             return <ChancellorVotingScreen
                 state={state}
                 sendCommand={sendCommand}
+                userName={userName}
             />;
 
         case "president_drawing_policies":

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {SmallLayout} from "../Layout";
-import {CourierText} from "../../components/CourierText";
 import {filterUsers} from '../../utils/filterUsers';
 import {Title} from "../../components/Title";
 import {CardBox} from "../../components/CardBox";
