@@ -49,6 +49,7 @@ export default function GameScreen() {
             sendCommand={sendCommandPartially}
             state={state}
             userName={userName}
+            onLeaveRoom={onLeaveRoom}
         />
     }
 }

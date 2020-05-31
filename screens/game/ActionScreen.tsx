@@ -9,8 +9,9 @@ import {PresidentLooksPoliciesScreen} from "./PresidentLooksPoliciesScreen";
 import {InvestigatingLoyaltyScreen} from "./InvestigatingLoyaltyScreen";
 import {InvestigatingLoyaltyConfirmScreen} from "./InvestigatingLoyaltyConfirmScreen";
 import {PresidentPickScreen} from "./PresidentPickScreen";
+import {GameOverScreen} from "./GameOverScreen";
 
-export function ActionScreen({state, sendCommand, userName}) {
+export function ActionScreen({state, sendCommand, userName, onLeaveRoom}) {
     switch (state.game.state) {
         case "nominating_chancellor":
             return <ChancellorNominationScreen
@@ -73,6 +74,12 @@ export function ActionScreen({state, sendCommand, userName}) {
                 state={state}
                 sendCommand={sendCommand}
                 userName={userName}
+            />;
+
+        case "game_over":
+            return <GameOverScreen
+                state={state}
+                onLeaveRoom={onLeaveRoom}
             />;
         default:
             return <Text/>
