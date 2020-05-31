@@ -22,7 +22,7 @@ export function ChancellorNominationScreen({state, sendCommand, userName}) {
     if (state.game.president !== userName) {
         return (
             <SmallLayout>
-                <Title>Waiting for president ({state.game.president}) to nominate chancellor</Title>
+                <Title>Waiting for president ({state.game.president}) to nominate chancellor...</Title>
             </SmallLayout>
         );
     } else {

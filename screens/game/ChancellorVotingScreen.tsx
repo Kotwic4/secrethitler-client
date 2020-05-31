@@ -29,7 +29,7 @@ export function ChancellorVotingScreen({state, sendCommand, userName}) {
     if (alreadyVoted) {
         return (
             <SmallLayout>
-                <Title>Waiting for other players to vote. Your vote is ({vote})</Title>
+                <Title> Your vote is ({vote}). Waiting for other players to vote...</Title>
                 <View style={styles.playersContainer}>
                     {players_boxes}
                 </View>
