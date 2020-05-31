@@ -1,11 +1,14 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {sendCommand} from '../../utils/sendCommand';
-import {filterUsers} from '../../utils/filterUsers';
 import {ChancellorNominationScreen} from "./ChancellorNominationScreen";
 import {ChancellorVotingScreen} from "./ChancellorVotingScreen";
 import {PresidentDrawingPoliciesScreen} from "./PresidentDrawingPoliciesScreen";
 import {ChancellorEnactingPolicyScreen} from "./ChancellorEnactingPolicyScreen";
+import {ExecutionScreen} from "./ExecutionScreen";
+import {PresidentLooksPoliciesScreen} from "./PresidentLooksPoliciesScreen";
+import {InvestigatingLoyaltyScreen} from "./InvestigatingLoyaltyScreen";
+import {InvestigatingLoyaltyConfirmScreen} from "./InvestigatingLoyaltyConfirmScreen";
+import {PresidentPickScreen} from "./PresidentPickScreen";
 
 export function ActionScreen({state, sendCommand, userName}) {
     switch (state.game.state) {
@@ -37,6 +40,40 @@ export function ActionScreen({state, sendCommand, userName}) {
                 userName={userName}
             />;
 
+        case "executing":
+            return <ExecutionScreen
+                state={state}
+                sendCommand={sendCommand}
+                userName={userName}
+            />;
+
+        case "dismiss_policies":
+            return <PresidentLooksPoliciesScreen
+                state={state}
+                sendCommand={sendCommand}
+                userName={userName}
+            />;
+
+        case "investigating_loyalty":
+            return <InvestigatingLoyaltyScreen
+                state={state}
+                sendCommand={sendCommand}
+                userName={userName}
+            />;
+
+        case "ack_investigating_loyalty":
+            return <InvestigatingLoyaltyConfirmScreen
+                state={state}
+                sendCommand={sendCommand}
+                userName={userName}
+            />;
+
+        case "president_picking_next_president":
+            return <PresidentPickScreen
+                state={state}
+                sendCommand={sendCommand}
+                userName={userName}
+            />;
         default:
             return <Text/>
     }

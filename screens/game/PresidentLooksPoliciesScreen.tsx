@@ -1,0 +1,48 @@
+import React, {useState} from 'react';
+import {StyleSheet, View} from 'react-native';
+import {SmallLayout} from "../Layout";
+import {Title} from "../../components/Title";
+import {CardBox} from "../../components/CardBox";
+import {StyledButton} from "../../components/StyledButton";
+
+export function PresidentLooksPoliciesScreen({state, sendCommand, userName}) {
+    const [loading, setLoading] = useState(false);
+    const dismiss = () => {
+        setLoading(true);
+
+        sendCommand({
+            action: "dismiss_policies",
+        });
+    };
+    const top3Cards = state.game.policy_stack.slice(0, 3);
+    const cards = top3Cards.map((card) => {
+        return <CardBox card={card} disabled={true}/>
+    });
+
+    if (state.game.president !== userName) {
+        return (
+            <SmallLayout>
+                <Title>Waiting for president ({state.game.president}) to look at policies...</Title>
+            </SmallLayout>
+        );
+    } else {
+        return (
+            <SmallLayout>
+                <Title>Look at policies</Title>
+                <View style={styles.cardsContainer}>
+                    {cards}
+                </View>
+                <StyledButton text={"Dismiss"} onPress={dismiss} disabled={loading}/>
+            </SmallLayout>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    cardsContainer: {
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        justifyContent: "space-around"
+    }
+});

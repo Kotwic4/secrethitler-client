@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {JoinRoom} from "./game/JoinScreen";
 import {LobbyScreen} from "./game/LobbyScreen";
-import {SERVER_URL, WEBSOCKET_URL} from '../constants/Server';
-import { sendCommand } from '../utils/sendCommand';
+import {sendCommand} from '../utils/sendCommand';
 import {ActionScreen} from "./game/ActionScreen";
 
 export default function GameScreen() {
     const [userName, setUserName] = useState('');
-    const [state, setState] = useState({});
+    const [state, setState] = useState();
     const [channel, setChannel] = useState();
     const [socket, setSocket] = useState();
 
@@ -21,7 +20,7 @@ export default function GameScreen() {
         setChannel(null);
         setSocket(null);
         setUserName('');
-        setState({});
+        setState(null);
     };
 
     const onJoin = (payload, socket, channel) => {
