@@ -17,9 +17,9 @@ export function PlayersScreen({state, userName}) {
         console.log(state.game.chancellor, user_name);
 
         if (state.game.president === user_name) {
-            extraRole = "President";
+            extraRole = "president";
         } else if (state.game.chancellor === user_name) {
-            extraRole = "Chancellor";
+            extraRole = "chancellor";
         }
 
         switch (user.role) {
