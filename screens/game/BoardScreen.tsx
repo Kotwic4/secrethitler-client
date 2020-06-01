@@ -1,5 +1,6 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, View} from "react-native";
+import {Title} from "../../components/Title";
 
 const LIBERAL_BOARD = require('../../assets/images/liberal_board3.png');
 const LIBERAL = require('../../assets/images/liberal.png');
@@ -9,8 +10,8 @@ const FASCIST_BOARD910 = require('../../assets/images/fascist_board3.png');
 const FASCIST = require('../../assets/images/fascist.png');
 
 export function BoardScreen({state}) {
-    const liberalCards = state.game.enacted_policies.filter(policy => policy === "liberal").length
-    const fascistCards = state.game.enacted_policies.filter(policy => policy === "fascist").length
+    const liberalCards = state.game.enacted_policies.filter(policy => policy === "liberal").length;
+    const fascistCards = state.game.enacted_policies.filter(policy => policy === "fascist").length;
     const playersAmount = Object.keys(state.game.players).length;
     let fascistBoard;
 
@@ -57,16 +58,18 @@ export function BoardScreen({state}) {
     };
     return (
         <View>
+            <Title>Liberal</Title>
             {getBoard(LIBERAL_BOARD, LIBERAL, liberalCards, 1115, 310, 167, 255)}
+            <Title style={styles.title}>Fascist</Title>
             {getBoard(fascistBoard, FASCIST, fascistCards, 1337, 309, 167, 255)}
+            <Title style={styles.title}>Failed elections {state.game.failed_elections}/4</Title>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     boardContainer: {
-        position: "relative",
-        marginTop: 10
+        position: "relative"
     },
     board: {
         borderRadius: 5
@@ -74,5 +77,8 @@ const styles = StyleSheet.create({
     card: {
         position: "absolute",
         borderRadius: 5
+    },
+    title: {
+        marginTop: 40
     }
 });
