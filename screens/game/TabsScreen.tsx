@@ -3,10 +3,11 @@ import {SceneMap, TabBar, TabView} from "react-native-tab-view";
 import {Dimensions, View} from "react-native";
 import {SmallLayout} from "../Layout";
 import {ActionScreen} from "./ActionScreen";
+import {BoardScreen} from "./BoardScreen";
 
 export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
-    const GameRoute = () => (
-        <View style={{ backgroundColor: '#ff4081' }} />
+    const BoardRoute = () => (
+        <BoardScreen state={state}/>
     );
     const PlayersRoute = () => (
         <View style={{ backgroundColor: '#ff4081' }} />
@@ -22,13 +23,13 @@ export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
     const initialLayout = { width: Dimensions.get('window').width };
     const [index, setIndex] = useState(0);
     const [routes] = useState([
-        { key: 'game', title: 'Game' },
+        { key: 'board', title: 'Board' },
         { key: 'action', title: 'Action' },
         { key: 'players', title: 'Players' },
     ]);
 
     const renderScene = SceneMap({
-        game: GameRoute,
+        board: BoardRoute,
         players: PlayersRoute,
         action: ActionRoute,
     });
