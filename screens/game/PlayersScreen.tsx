@@ -14,8 +14,6 @@ export function PlayersScreen({state, userName}) {
         let image = null;
         let extraRole = null;
 
-        console.log(state.game.chancellor, user_name);
-
         if (state.game.president === user_name) {
             extraRole = "president";
         } else if (state.game.chancellor === user_name) {
