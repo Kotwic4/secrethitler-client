@@ -1,13 +1,11 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {SmallLayout} from "../Layout";
-import {filterUsers} from '../../utils/filterUsers';
 import {PlayerBox} from "../../components/PlayerBox";
 import {Title} from "../../components/Title";
 
 export function InvestigatingLoyaltyScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);
-    const players = filterUsers(state, 'player').filter(user_name => user_name !== userName);
+    const players = Object.keys(state.game.players).filter(user_name => user_name !== userName);
     const checkLoyalty = (user_name) => {
         setLoading(true);
         sendCommand({

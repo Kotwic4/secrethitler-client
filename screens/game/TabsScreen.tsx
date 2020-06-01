@@ -4,13 +4,14 @@ import {Dimensions, View} from "react-native";
 import {SmallLayout} from "../Layout";
 import {ActionScreen} from "./ActionScreen";
 import {BoardScreen} from "./BoardScreen";
+import {PlayersScreen} from "./PlayersScreen";
 
 export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
     const BoardRoute = () => (
         <BoardScreen state={state}/>
     );
     const PlayersRoute = () => (
-        <View style={{ backgroundColor: '#ff4081' }} />
+        <PlayersScreen state={state} userName={userName}/>
     );
     const ActionRoute = () => (
         <ActionScreen

@@ -2,13 +2,12 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {StyledButton} from "../../components/StyledButton";
 import {SmallLayout} from "../Layout";
-import {filterUsers} from '../../utils/filterUsers';
 import {PlayerBox} from "../../components/PlayerBox";
 import {Title} from "../../components/Title";
 
 export function LobbyScreen({onLeaveRoom, sendCommand, state, userName}) {
     const roomName = state.room_code;
-    const players = filterUsers(state, 'player').map(player => {
+    const players = Object.keys(state.game.players).map(player => {
         return <PlayerBox player={player} userName={userName}/>
     });
     const startGame = () => sendCommand({action: "start_game"});
@@ -18,7 +17,7 @@ export function LobbyScreen({onLeaveRoom, sendCommand, state, userName}) {
     if (players.length < 5) {
         startButtonText = "Waiting for players...";
         startButtonDisabled = true;
-    } else if (players > 10) {
+    } else if (players.length > 10) {
         startButtonText = "Waiting for players to leave...";
         startButtonDisabled = true;
     } else {

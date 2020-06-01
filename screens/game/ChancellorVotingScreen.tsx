@@ -4,7 +4,6 @@ import {StyledButton} from "../../components/StyledButton";
 import {SmallLayout} from "../Layout";
 import {PlayerBox} from "../../components/PlayerBox";
 import {Title} from "../../components/Title";
-import {filterUsers} from "../../utils/filterUsers";
 
 export function ChancellorVotingScreen({state, sendCommand, userName}) {
     const [alreadyVoted, setAlreadyVoted] = useState(false);
@@ -21,7 +20,7 @@ export function ChancellorVotingScreen({state, sendCommand, userName}) {
     const getVote = (player) => {
         return state.game.players[player].vote;
     };
-    const players = filterUsers(state, 'player');
+    const players = Object.keys(state.game.players);
     const players_boxes = players.map(user_name => {
         return <PlayerBox userName={userName} player={user_name} vote={getVote(user_name)}/>;
     });
