@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     },
     tabBarLabel: {
         fontSize: 14,
-        marginTop: -5,
+        marginTop: -2,
         fontFamily: 'courier-prime'
     }
 });

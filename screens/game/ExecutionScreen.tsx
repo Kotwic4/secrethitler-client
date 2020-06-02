@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {PlayerBox} from "../../components/PlayerBox";
 import {Title} from "../../components/Title";
+import {getPlayerInfo} from "../../utils/getPlayerInfo";
 
 export function ExecutionScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);
@@ -16,7 +17,8 @@ export function ExecutionScreen({state, sendCommand, userName}) {
         });
     };
     const players_boxes = players.map(user_name => {
-        return <PlayerBox key={user_name} disabled={loading} userName={userName} player={user_name} onPress={() => executePlayer(user_name)}/>;
+        const {image, extraRole} = getPlayerInfo(state, user_name);
+        return <PlayerBox key={user_name} image={image} extraRole={extraRole} disabled={loading} userName={userName} player={user_name} onPress={() => executePlayer(user_name)}/>;
     });
 
     if (state.game.president !== userName) {

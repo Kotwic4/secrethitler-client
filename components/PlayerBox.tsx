@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 const YA = require('../assets/images/ya_card.png');
 const NEIN = require('../assets/images/nein_card.png');
+const DEAD = require('../assets/images/dead.png');
 
 export function PlayerBox({player, userName, image = null, disabled = false, isAlive = true, vote = null, onPress = null, extraRole = null}) {
     let voteLayer;
@@ -12,16 +13,18 @@ export function PlayerBox({player, userName, image = null, disabled = false, isA
     }
 
     if (onPress === null) {
-        return <View style={[styles.container, !isAlive ? styles.notAlive : {}, !image ? styles.center : {}]}>
+        return <View style={[styles.container, !image ? styles.center : {}]}>
             {image && <Image source={image} style={styles.image}/>}
+            {!isAlive && <Image source={DEAD} style={styles.notAlive}/>}
             {voteLayer}
             <Text style={styles.text}>{player}</Text>
             {player === userName && <Text style={styles.youText}>{"(you)"}</Text>}
             {extraRole && <Text style={styles.presidentOrChancellor}>{extraRole === "chancellor" ? "Chancellor" : "President"}</Text>}
         </View>
     } else {
-        return <TouchableOpacity disabled={disabled} onPress={onPress} style={[styles.container, !isAlive ? styles.notAlive : {}, !image ? styles.center : {}]}>
+        return <TouchableOpacity disabled={disabled} onPress={onPress} style={[styles.container, !image ? styles.center : {}]}>
             {image && <Image source={image} style={styles.image}/>}
+            {!isAlive && <Image source={DEAD} style={styles.notAlive}/>}
             {voteLayer}
             <Text style={styles.text}>{player}</Text>
             {player === userName && <Text style={styles.youText}>{"(you)"}</Text>}
@@ -44,7 +47,10 @@ const styles = StyleSheet.create({
         overflow: "hidden"
     },
     notAlive: {
-        opacity: 0.5
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        zIndex: 5
     },
     text: {
         color: "black",

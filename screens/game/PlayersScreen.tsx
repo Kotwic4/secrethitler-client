@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from "react-native";
 import {PlayerBox} from "../../components/PlayerBox";
 import {StyledButton} from "../../components/StyledButton";
+import {getPlayerInfo} from "../../utils/getPlayerInfo";
 
 const LIBERAL = require('../../assets/images/liberal_role.png');
 const FASCIST = require('../../assets/images/fascist_role.png');
@@ -11,26 +12,7 @@ export function PlayersScreen({state, userName, onLeaveRoom}) {
     const players = Object.keys(state.game.players);
     const players_boxes = players.map(user_name => {
         const user = state.game.players[user_name];
-        let image = null;
-        let extraRole = null;
-
-        if (state.game.president === user_name) {
-            extraRole = "president";
-        } else if (state.game.chancellor === user_name) {
-            extraRole = "chancellor";
-        }
-
-        switch (user.role) {
-            case "liberal":
-                image = LIBERAL;
-                break;
-            case "fascist":
-                image = FASCIST;
-                break;
-            case "hitler":
-                image = HITLER;
-                break
-        }
+        const {image, extraRole} = getPlayerInfo(state, user_name);
 
         return <PlayerBox key={user_name} userName={userName} image={image} player={user_name} extraRole={extraRole}
                           isAlive={user.is_alive}/>;
