@@ -14,17 +14,17 @@ export function PlayerBox({player, userName, image = null, disabled = false, isA
     if (onPress === null) {
         return <View style={[styles.container, !isAlive ? styles.notAlive : {}, !image ? styles.center : {}]}>
             {image && <Image source={image} style={styles.image}/>}
+            {voteLayer}
             <Text style={styles.text}>{player}</Text>
             {player === userName && <Text style={styles.youText}>{"(you)"}</Text>}
-            {voteLayer}
             {extraRole && <Text style={styles.presidentOrChancellor}>{extraRole === "chancellor" ? "Chancellor" : "President"}</Text>}
         </View>
     } else {
         return <TouchableOpacity disabled={disabled} onPress={onPress} style={[styles.container, !isAlive ? styles.notAlive : {}, !image ? styles.center : {}]}>
             {image && <Image source={image} style={styles.image}/>}
+            {voteLayer}
             <Text style={styles.text}>{player}</Text>
             {player === userName && <Text style={styles.youText}>{"(you)"}</Text>}
-            {voteLayer}
             {extraRole && <Text style={styles.presidentOrChancellor}>{extraRole  === "chancellor" ? "Chancellor" : "President"}</Text>}
         </TouchableOpacity>
     }
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         position: "absolute",
         width: "100%",
         height: "100%",
-        zIndex: 4,
+        zIndex: -1,
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
