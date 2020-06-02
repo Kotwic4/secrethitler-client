@@ -32,24 +32,24 @@ export default function GameScreen() {
 
     const sendCommandPartially = (command) => sendCommand(channel, command);
 
-    // if (!socket) {
-    //     return <JoinRoom
-    //         onMutation={onMutation}
-    //         onJoin={onJoin}
-    //     />;
-    // } else if (state.game.state === "awaiting_players") {
-    //     return <LobbyScreen
-    //         onLeaveRoom={onLeaveRoom}
-    //         sendCommand={sendCommandPartially}
-    //         state={state}
-    //         userName={userName}
-    //     />
-    // } else {
+    if (!socket) {
+        return <JoinRoom
+            onMutation={onMutation}
+            onJoin={onJoin}
+        />;
+    } else if (state.game.state === "awaiting_players") {
+        return <LobbyScreen
+            onLeaveRoom={onLeaveRoom}
+            sendCommand={sendCommandPartially}
+            state={state}
+            userName={userName}
+        />
+    } else {
         return <TabsScreen
             sendCommand={sendCommandPartially}
             state={state}
             userName={userName}
             onLeaveRoom={onLeaveRoom}
         />
-    // }
+    }
 }
