@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Title} from "../../components/Title";
 import {CardBox} from "../../components/CardBox";
+import {StyledButton} from "../../components/StyledButton";
 
 export function ChancellorEnactingPolicyScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);
@@ -14,6 +15,17 @@ export function ChancellorEnactingPolicyScreen({state, sendCommand, userName}) {
             enacted: pickedCard
         });
     };
+
+    const veto = () => {
+        setLoading(true);
+
+        sendCommand({
+            action: "chancellor_veto",
+        });
+    };
+
+    const vetoAvailable = state.game.veto_request;
+
     const top2Cards = state.game.policy_stack.slice(0, 2);
     const cards = top2Cards.map((card, index) => {
         return <CardBox key={index} card={card} disabled={loading} onPress={() => pickCards(index)}/>
@@ -32,6 +44,7 @@ export function ChancellorEnactingPolicyScreen({state, sendCommand, userName}) {
                 <View style={styles.cardsContainer}>
                     {cards}
                 </View>
+                { vetoAvailable && <StyledButton text={"Veto"} onPress={veto} disabled={loading}/> }
             </View>
         );
     }

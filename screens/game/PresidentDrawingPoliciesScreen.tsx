@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
-import {StyleSheet, View} from 'react-native';
+import {StyleSheet, Switch, View} from 'react-native';
 import {Title} from "../../components/Title";
 import {CardBox} from "../../components/CardBox";
 
 export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);
+    const [veto, setVeto] = useState(false);
     const pickCards = (withoutCardIndex) => {
         const pickedCards = [...top3Cards];
         pickedCards.splice(withoutCardIndex, 1);
@@ -13,12 +14,13 @@ export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
         sendCommand({
             action: "president_pick_policies",
             policies: pickedCards,
-            veto_request: false
+            veto_request: veto
         });
     };
+    const vetoAvailable = state.game.enacted_policies.filter(policy => policy == "fascist").length >= 5;
     const top3Cards = state.game.policy_stack.slice(0, 3);
     const cards = top3Cards.map((card, index) => {
-        return <CardBox  key={index} card={card} disabled={loading} onPress={() => pickCards(index)}/>
+        return <CardBox key={index} card={card} disabled={loading} onPress={() => pickCards(index)}/>
     });
 
     if (state.game.president !== userName) {
@@ -31,6 +33,12 @@ export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
         return (
             <View>
                 <Title>Dismiss one policy</Title>
+                {vetoAvailable &&
+                    <View style={styles.cardsContainer}>
+                        <Title>Veto</Title>
+                        <Switch value={veto} onValueChange={() => setVeto(!veto)}/>
+                    </View>
+                }
                 <View style={styles.cardsContainer}>
                     {cards}
                 </View>
