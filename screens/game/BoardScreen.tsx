@@ -62,7 +62,7 @@ export function BoardScreen({state}) {
             {getBoard(LIBERAL_BOARD, LIBERAL, liberalCards, 1115, 310, 167, 255)}
             <Title style={styles.title}>Fascist</Title>
             {getBoard(fascistBoard, FASCIST, fascistCards, 1337, 309, 167, 255)}
-            <Title style={styles.title}>Failed elections {state.game.failed_elections}/4</Title>
+            <Title style={styles.title}>Failed elections {state.game.failed_elections}/3</Title>
         </View>
     )
 }
