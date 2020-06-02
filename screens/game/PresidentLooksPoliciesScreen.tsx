@@ -26,22 +26,34 @@ export function PresidentLooksPoliciesScreen({state, sendCommand, userName}) {
         );
     } else {
         return (
-            <View>
+            <View style={styles.container}>
                 <Title>Look at policies</Title>
                 <View style={styles.cardsContainer}>
                     {cards}
                 </View>
-                <StyledButton text={"Dismiss"} onPress={dismiss} disabled={loading}/>
+                <View style={styles.buttonContainer}>
+                    <StyledButton text={"Dismiss"} onPress={dismiss} disabled={loading}/>
+                </View>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    container: {
+        height: "100%",
+        display: "flex"
+    },
     cardsContainer: {
         display: "flex",
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "space-around"
+    },
+    buttonContainer: {
+        position: "absolute",
+        bottom: 8,
+        left: 0,
+        width: "100%"
     }
 });

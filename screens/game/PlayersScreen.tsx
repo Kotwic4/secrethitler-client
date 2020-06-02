@@ -3,6 +3,7 @@ import {StyleSheet, View} from "react-native";
 import {PlayerBox} from "../../components/PlayerBox";
 import {StyledButton} from "../../components/StyledButton";
 import {getPlayerInfo} from "../../utils/getPlayerInfo";
+import {Title} from "../../components/Title";
 
 const LIBERAL = require('../../assets/images/liberal_role.png');
 const FASCIST = require('../../assets/images/fascist_role.png');
@@ -19,6 +20,7 @@ export function PlayersScreen({state, userName, onLeaveRoom}) {
     });
     return (
         <View style={styles.container}>
+            <Title>Players</Title>
             <View style={styles.playersContainer}>{players_boxes}</View>
             <View style={styles.buttonContainer}>
                 <StyledButton

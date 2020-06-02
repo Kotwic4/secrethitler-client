@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {PlayerBox} from "../../components/PlayerBox";
 import {Title} from "../../components/Title";
+import {getPlayerInfo} from "../../utils/getPlayerInfo";
 
 export function InvestigatingLoyaltyScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);
@@ -16,7 +17,8 @@ export function InvestigatingLoyaltyScreen({state, sendCommand, userName}) {
         });
     };
     const players_boxes = players.map(user_name => {
-        return <PlayerBox key={user_name} disabled={loading} userName={userName} player={user_name}
+        const {image, extraRole} = getPlayerInfo(state, user_name);
+        return <PlayerBox key={user_name} image={image} extraRole={extraRole} disabled={loading} userName={userName} player={user_name}
                           onPress={() => checkLoyalty(user_name)}/>;
     });
 
@@ -29,7 +31,7 @@ export function InvestigatingLoyaltyScreen({state, sendCommand, userName}) {
     } else {
         return (
             <View>
-                <Title>Check player loyalty</Title>
+                <Title>Check player's loyalty</Title>
                 <View style={styles.playersContainer}>{players_boxes}</View>
             </View>
         );

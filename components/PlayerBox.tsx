@@ -58,13 +58,14 @@ const styles = StyleSheet.create({
         textShadowColor: "white",
         textShadowOffset: {width: 1, height: 1},
         textShadowRadius: 2,
-        fontSize: 20
+        fontSize: 20,
+        zIndex: 4
     },
     voteLayer: {
         position: "absolute",
         width: "100%",
         height: "100%",
-        zIndex: -1,
+        zIndex: 4,
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
@@ -75,14 +76,16 @@ const styles = StyleSheet.create({
         marginBottom: 5,
         textShadowColor: "white",
         textShadowOffset: {width: 1, height: 1},
-        textShadowRadius: 2
+        textShadowRadius: 2,
+        zIndex: 4
     },
     image: {
         width: 246/3,
         height: 361/3,
         position: "absolute",
         top: 0,
-        left: 0
+        left: 0,
+        zIndex: 2
     },
     center: {
         justifyContent: "center"

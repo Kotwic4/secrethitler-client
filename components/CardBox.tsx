@@ -27,8 +27,8 @@ export function CardBox({card, disabled = false, onPress = null}) {
 
 const styles = StyleSheet.create({
     container: {
-        width: 277/4,
-        height: 424/4,
+        width: 246/3,
+        height: 361/3,
         marginBottom: 25,
         borderRadius: 9,
         overflow: "hidden"

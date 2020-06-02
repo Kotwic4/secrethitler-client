@@ -20,17 +20,18 @@ export function InvestigatingLoyaltyConfirmScreen({state, sendCommand, userName}
     if (state.game.president !== userName) {
         return (
             <View>
-                <Title>Waiting for president ({state.game.president}) to investigate loyalty of player
-                    ({selectedPlayer})...</Title>
+                <Title>Waiting for president ({state.game.president}) to investigate loyalty of {selectedPlayer}...</Title>
             </View>
         );
     } else {
         const selectedPlayerLoyality = state.game.players[selectedPlayer].role === "liberal" ? "liberal" : "fascists";
         return (
             <View style={styles.container}>
-                <Title>Loyalty of player ({selectedPlayer}) is:</Title>
-                <Image style={styles.partyLayer} source={selectedPlayerLoyality == "liberal" ? LIBERAL : FACIST}/>
-                <StyledButton text={"Dismiss"} onPress={dismiss} disabled={loading}/>
+                <Title>Loyalty of player {selectedPlayer}</Title>
+                <Image resizeMode="contain" style={styles.image} source={selectedPlayerLoyality == "liberal" ? LIBERAL : FACIST}/>
+                <View style={styles.buttonContainer}>
+                    <StyledButton text={"Dismiss"} onPress={dismiss} disabled={loading}/>
+                </View>
             </View>
         );
     }
@@ -38,19 +39,23 @@ export function InvestigatingLoyaltyConfirmScreen({state, sendCommand, userName}
 
 const styles = StyleSheet.create({
     container: {
-        width: "100%",
         height: "100%",
         display: "flex",
-        justifyContent: "space-around",
         alignItems: "center",
     },
-    partyLayer: {
+    image: {
         width: "50%",
-        height: "50%",
-        zIndex: -1,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        height: "48%",
+        borderWidth: 1,
+        borderColor: "#434343",
+        borderRadius: 5,
+        overflow: "hidden"
     },
+    buttonContainer: {
+        position: "absolute",
+        bottom: 8,
+        left: 0,
+        width: "100%"
+    }
 });
 
