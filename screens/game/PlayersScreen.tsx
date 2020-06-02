@@ -1,12 +1,13 @@
 import React from 'react';
 import {StyleSheet, View} from "react-native";
 import {PlayerBox} from "../../components/PlayerBox";
+import {StyledButton} from "../../components/StyledButton";
 
 const LIBERAL = require('../../assets/images/liberal_role.png');
 const FASCIST = require('../../assets/images/fascist_role.png');
 const HITLER = require('../../assets/images/hitler_role.png');
 
-export function PlayersScreen({state, userName}) {
+export function PlayersScreen({state, userName, onLeaveRoom}) {
     const players = Object.keys(state.game.players);
     const players_boxes = players.map(user_name => {
         const user = state.game.players[user_name];
@@ -35,25 +36,27 @@ export function PlayersScreen({state, userName}) {
                           isAlive={user.is_alive}/>;
     });
     return (
-        <View>
+        <View style={styles.container}>
             <View style={styles.playersContainer}>{players_boxes}</View>
+            <View style={styles.buttonContainer}>
+                <StyledButton
+                    text="Leave room"
+                    onPress={onLeaveRoom}
+                />
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    boardContainer: {
-        position: "relative"
+    container: {
+        height: "100%"
     },
-    board: {
-        borderRadius: 5
-    },
-    card: {
+    buttonContainer: {
         position: "absolute",
-        borderRadius: 5
-    },
-    title: {
-        marginTop: 40
+        bottom: 8,
+        left: 0,
+        width: "100%"
     },
     playersContainer: {
         display: "flex",

@@ -12,31 +12,37 @@ export function GameOverScreen({state, onLeaveRoom}) {
     const winner = state.game.winner;
     return (
         <View style={styles.container}>
-            <Title>Game was won by:</Title>
-            <Image style={styles.partyLayer} source={winner == "liberal" ? LIBERAL : FACIST}/>
-            <StyledButton
-                text="Leave room"
-                onPress={onLeaveRoom}
-            />
+            <Title>Game won by:</Title>
+            <Image resizeMode="contain" style={styles.image} source={winner == "liberal" ? LIBERAL : FACIST}/>
+            <View style={styles.buttonContainer}>
+                <StyledButton
+                    text="Leave room"
+                    onPress={onLeaveRoom}
+                />
+            </View>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        width: "100%",
         height: "100%",
         display: "flex",
-        justifyContent: "space-around",
         alignItems: "center",
     },
-    partyLayer: {
+    image: {
         width: "50%",
-        height: "50%",
-        zIndex: -1,
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+        height: "48%",
+        borderWidth: 1,
+        borderColor: "#434343",
+        borderRadius: 5,
+        overflow: "hidden"
     },
+    buttonContainer: {
+        position: "absolute",
+        bottom: 8,
+        left: 0,
+        width: "100%"
+    }
 });
 

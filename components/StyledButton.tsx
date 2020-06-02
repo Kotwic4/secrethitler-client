@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
         opacity: 0.5
     },
     text: {
-        color: '#FBB969'
+        color: '#FBB969',
+        fontSize: 14
     }
 });

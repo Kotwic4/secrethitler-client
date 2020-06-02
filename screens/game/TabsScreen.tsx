@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {SceneMap, TabBar, TabView} from "react-native-tab-view";
-import {Dimensions, View} from "react-native";
+import {Dimensions, StyleSheet} from "react-native";
 import {SmallLayout} from "../Layout";
 import {ActionScreen} from "./ActionScreen";
 import {BoardScreen} from "./BoardScreen";
@@ -11,7 +11,7 @@ export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
         <BoardScreen state={state}/>
     );
     const PlayersRoute = () => (
-        <PlayersScreen state={state} userName={userName}/>
+        <PlayersScreen state={state} userName={userName} onLeaveRoom={onLeaveRoom}/>
     );
     const ActionRoute = () => (
         <ActionScreen
@@ -38,10 +38,12 @@ export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
         <TabBar
             {...props}
             indicatorStyle={{ backgroundColor: 'white', display: "none" }}
-            style={{ backgroundColor: '#434343', borderRadius: 5 }}
+            style={styles.tabBar}
             pressColor="blue"
             activeColor="#FBB969"
             inactiveColor="white"
+            labelStyle={styles.tabBarLabel}
+            getLabelText={({ route }) => route.title}
         />
     );
 
@@ -58,3 +60,17 @@ export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
         </SmallLayout>
     );
 }
+
+const styles = StyleSheet.create({
+    tabBar: {
+        backgroundColor: '#434343',
+        borderRadius: 5,
+        height: 40,
+        padding: 0
+    },
+    tabBarLabel: {
+        fontSize: 14,
+        marginTop: -5,
+        fontFamily: 'courier-prime'
+    }
+});
