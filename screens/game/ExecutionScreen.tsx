@@ -5,7 +5,9 @@ import {Title} from "../../components/Title";
 
 export function ExecutionScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);
-    const players = Object.keys(state.game.players).filter(user_name => user_name !== userName);
+    const players = Object.keys(state.game.players)
+        .filter(user_name => user_name !== userName)
+        .filter(user_name => state.game.players[user_name].is_alive);
     const executePlayer = (user_name) => {
         setLoading(true);
         sendCommand({
