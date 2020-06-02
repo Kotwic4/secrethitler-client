@@ -5,7 +5,6 @@ import {Title} from "../../components/Title";
 import {CardBox} from "../../components/CardBox";
 
 export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
-    const [top3Cards, setTop3Cards] = useState(state.game.policy_stack.slice(0, 3));
     const [loading, setLoading] = useState(false);
     const pickCards = (withoutCardIndex) => {
         const pickedCards = [...top3Cards];
@@ -18,6 +17,7 @@ export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
             veto_request: false
         });
     };
+    const top3Cards = state.game.policy_stack.slice(0, 3);
     const cards = top3Cards.map((card, index) => {
         return <CardBox card={card} disabled={loading} onPress={() => pickCards(index)}/>
     });
@@ -25,13 +25,13 @@ export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
     if (state.game.president !== userName) {
         return (
             <View>
-                <Title>Waiting for president ({state.game.president}) to draw policies...</Title>
+                <Title>Waiting for president ({state.game.president}) to dismiss one policy...</Title>
             </View>
         );
     } else {
         return (
             <View>
-                <Title>Draw policy</Title>
+                <Title>Dismiss one policy</Title>
                 <View style={styles.cardsContainer}>
                     {cards}
                 </View>
