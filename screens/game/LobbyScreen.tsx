@@ -8,7 +8,7 @@ import {Title} from "../../components/Title";
 export function LobbyScreen({onLeaveRoom, sendCommand, state, userName}) {
     const roomName = state.room_code;
     const players = Object.keys(state.game.players).map(player => {
-        return <PlayerBox player={player} userName={userName}/>
+        return <PlayerBox key={player} player={player} userName={userName}/>
     });
     const startGame = () => sendCommand({action: "start_game"});
     let startButtonText;

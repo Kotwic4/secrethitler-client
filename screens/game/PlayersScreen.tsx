@@ -1,6 +1,5 @@
 import React from 'react';
 import {StyleSheet, View} from "react-native";
-import {Title} from "../../components/Title";
 import {PlayerBox} from "../../components/PlayerBox";
 
 const LIBERAL = require('../../assets/images/liberal_role.png');
@@ -32,7 +31,8 @@ export function PlayersScreen({state, userName}) {
                 break
         }
 
-        return <PlayerBox userName={userName} image={image} player={user_name} extraRole={extraRole} isAlive={user.is_alive} />;
+        return <PlayerBox key={user_name} userName={userName} image={image} player={user_name} extraRole={extraRole}
+                          isAlive={user.is_alive}/>;
     });
     return (
         <View>

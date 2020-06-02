@@ -41,6 +41,7 @@ export function BoardScreen({state}) {
             const top = 27*ratio;
             const left = 30*ratio + width*index + (55*ratio)*index;
             return <Image
+                key={index}
                 source={cardSource}
                 style={[styles.card, {width, height, top, left}]}
                 resizeMode="contain"

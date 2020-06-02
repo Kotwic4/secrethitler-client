@@ -17,7 +17,7 @@ export function ChancellorNominationScreen({state, sendCommand, userName}) {
         });
     };
     const players_boxes = players.map(user_name => {
-        return <PlayerBox disabled={loading} userName={userName} player={user_name} onPress={() => nominateChancellor(user_name)}/>;
+        return <PlayerBox key={user_name} disabled={loading} userName={userName} player={user_name} onPress={() => nominateChancellor(user_name)}/>;
     });
 
     if (state.game.president !== userName) {

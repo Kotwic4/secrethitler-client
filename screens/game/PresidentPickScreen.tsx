@@ -16,7 +16,7 @@ export function PresidentPickScreen({state, sendCommand, userName}) {
         });
     };
     const players_boxes = players.map(user_name => {
-        return <PlayerBox disabled={loading} userName={userName} player={user_name} onPress={() => pickPresident(user_name)}/>;
+        return <PlayerBox key={user_name} disabled={loading} userName={userName} player={user_name} onPress={() => pickPresident(user_name)}/>;
     });
 
     if (state.game.president !== userName) {

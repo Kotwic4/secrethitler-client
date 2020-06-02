@@ -19,7 +19,7 @@ export function ChancellorVotingScreen({state, sendCommand, userName}) {
     const vote = getVote(userName);
     const players = Object.keys(state.game.players);
     const players_boxes = players.map(user_name => {
-        return <PlayerBox userName={userName} player={user_name} vote={getVote(user_name)}/>;
+        return <PlayerBox key={user_name} userName={userName} player={user_name} vote={getVote(user_name)}/>;
     });
 
     const voteOption = (vote) => (

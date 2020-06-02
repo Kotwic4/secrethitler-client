@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {SmallLayout} from "../Layout";
 import {Title} from "../../components/Title";
 import {CardBox} from "../../components/CardBox";
 
@@ -19,7 +18,7 @@ export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
     };
     const top3Cards = state.game.policy_stack.slice(0, 3);
     const cards = top3Cards.map((card, index) => {
-        return <CardBox card={card} disabled={loading} onPress={() => pickCards(index)}/>
+        return <CardBox  key={index} card={card} disabled={loading} onPress={() => pickCards(index)}/>
     });
 
     if (state.game.president !== userName) {

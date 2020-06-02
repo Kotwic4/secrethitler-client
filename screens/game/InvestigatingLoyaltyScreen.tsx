@@ -16,7 +16,8 @@ export function InvestigatingLoyaltyScreen({state, sendCommand, userName}) {
         });
     };
     const players_boxes = players.map(user_name => {
-        return <PlayerBox disabled={loading} userName={userName} player={user_name} onPress={() => checkLoyalty(user_name)}/>;
+        return <PlayerBox key={user_name} disabled={loading} userName={userName} player={user_name}
+                          onPress={() => checkLoyalty(user_name)}/>;
     });
 
     if (state.game.president !== userName) {
@@ -29,7 +30,7 @@ export function InvestigatingLoyaltyScreen({state, sendCommand, userName}) {
         return (
             <View>
                 <Title>Check player loyalty</Title>
-                <View style={styles.playersContainer}>{ players_boxes }</View>
+                <View style={styles.playersContainer}>{players_boxes}</View>
             </View>
         );
     }

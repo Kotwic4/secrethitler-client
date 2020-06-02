@@ -16,7 +16,7 @@ export function ChancellorEnactingPolicyScreen({state, sendCommand, userName}) {
     };
     const top2Cards = state.game.policy_stack.slice(0, 2);
     const cards = top2Cards.map((card, index) => {
-        return <CardBox card={card} disabled={loading} onPress={() => pickCards(index)}/>
+        return <CardBox key={index} card={card} disabled={loading} onPress={() => pickCards(index)}/>
     });
 
     if (state.game.chancellor !== userName) {
