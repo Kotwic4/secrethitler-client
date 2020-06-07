@@ -49,8 +49,6 @@ Below are sample screenshots from current version of game:
 
 <img src="./docs/nomination2.jpg" width="300">
 
-<img src="./docs/nomination3.jpg" width="300">
-
 ### Voting
 
 <img src="./docs/voting.jpg" width="300">
