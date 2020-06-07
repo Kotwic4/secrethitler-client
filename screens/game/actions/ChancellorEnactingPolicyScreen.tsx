@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Title} from "../../components/Title";
-import {CardBox} from "../../components/CardBox";
-import {StyledButton} from "../../components/StyledButton";
+import {Title} from "../../../components/Title";
+import {CardBox} from "../../../components/CardBox";
+import {StyledButton} from "../../../components/StyledButton";
 
 export function ChancellorEnactingPolicyScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);

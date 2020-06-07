@@ -1,11 +1,9 @@
 import React from 'react';
 import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
-import {PlayerBox} from "../../components/PlayerBox";
-import {Title} from "../../components/Title";
-import {getPlayerInfo} from "../../utils/getPlayerInfo";
+import {Title} from "../../../components/Title";
 
-const YA = require('../../assets/images/ya_card.png');
-const NEIN = require('../../assets/images/nein_card.png');
+const YA = require('../../../assets/images/ya_card.png');
+const NEIN = require('../../../assets/images/nein_card.png');
 
 export function ChancellorVotingScreen({state, sendCommand, userName}) {
     const voteForChancellor = (vote) => {
@@ -18,11 +16,6 @@ export function ChancellorVotingScreen({state, sendCommand, userName}) {
         return state.game.players[player].vote;
     };
     const vote = getVote(userName);
-    const players = Object.keys(state.game.players);
-    const players_boxes = players.map(user_name => {
-        const {image, extraRole} = getPlayerInfo(state, user_name);
-        return <PlayerBox key={user_name} image={image} extraRole={extraRole} userName={userName} player={user_name} vote={getVote(user_name)}/>;
-    });
 
     const voteOption = (vote) => (
         <TouchableOpacity onPress={() => voteForChancellor(true)} style={[styles.voteContainer]}>
@@ -34,9 +27,6 @@ export function ChancellorVotingScreen({state, sendCommand, userName}) {
         return (
             <View>
                 <Title>Waiting for other players to vote...</Title>
-                <View style={styles.playersContainer}>
-                    {players_boxes}
-                </View>
             </View>
         );
     } else {

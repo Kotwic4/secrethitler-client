@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {StyleSheet, Switch, View} from 'react-native';
-import {Title} from "../../components/Title";
-import {CardBox} from "../../components/CardBox";
+import {Title} from "../../../components/Title";
+import {CardBox} from "../../../components/CardBox";
 
 export function PresidentDrawingPoliciesScreen({state, sendCommand, userName}) {
     const [loading, setLoading] = useState(false);

@@ -1,13 +1,13 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, View} from "react-native";
-import {Title} from "../../components/Title";
+import {Title} from "../../../components/Title";
 
-const LIBERAL_BOARD = require('../../assets/images/liberal_board3.png');
-const LIBERAL = require('../../assets/images/liberal.png');
-const FASCIST_BOARD56 = require('../../assets/images/fascist_board1.png');
-const FASCIST_BOARD78 = require('../../assets/images/fascist_board2.png');
-const FASCIST_BOARD910 = require('../../assets/images/fascist_board3.png');
-const FASCIST = require('../../assets/images/fascist.png');
+const LIBERAL_BOARD = require('../../../assets/images/liberal_board3.png');
+const LIBERAL = require('../../../assets/images/liberal.png');
+const FASCIST_BOARD56 = require('../../../assets/images/fascist_board1.png');
+const FASCIST_BOARD78 = require('../../../assets/images/fascist_board2.png');
+const FASCIST_BOARD910 = require('../../../assets/images/fascist_board3.png');
+const FASCIST = require('../../../assets/images/fascist.png');
 
 export function BoardScreen({state}) {
     const liberalCards = state.game.enacted_policies.filter(policy => policy === "liberal").length;

@@ -5,7 +5,7 @@ const UNKNOWN = require('../assets/images/unknown_role.png');
 
 export const getPlayerInfo = (state, user_name) => {
     const user = state.game.players[user_name];
-    let image = null;
+    let image;
     let extraRole = null;
 
     if (state.game.president === user_name) {
@@ -23,7 +23,7 @@ export const getPlayerInfo = (state, user_name) => {
             break;
         case "hitler":
             image = HITLER;
-            break
+            break;
 
         default:
             image = UNKNOWN;

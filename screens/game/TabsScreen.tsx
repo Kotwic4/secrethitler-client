@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import {SceneMap, TabBar, TabView} from "react-native-tab-view";
 import {Dimensions, StyleSheet} from "react-native";
 import {SmallLayout} from "../Layout";
-import {ActionScreen} from "./ActionScreen";
-import {BoardScreen} from "./BoardScreen";
-import {PlayersScreen} from "./PlayersScreen";
+import {ActionScreen} from "./tabs/ActionScreen";
+import {BoardScreen} from "./tabs/BoardScreen";
+import {PlayersScreen} from "./tabs/PlayersScreen";
+import {LastVotingScreen} from "./tabs/LastVotingScreen";
 
 export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
     const BoardRoute = () => (
@@ -12,6 +13,9 @@ export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
     );
     const PlayersRoute = () => (
         <PlayersScreen state={state} userName={userName} onLeaveRoom={onLeaveRoom}/>
+    );
+    const LastVoting = () => (
+        <LastVotingScreen state={state} userName={userName}/>
     );
     const ActionRoute = () => (
         <ActionScreen
@@ -27,12 +31,14 @@ export function TabsScreen({sendCommand, state, userName, onLeaveRoom}) {
         { key: 'board', title: 'Board' },
         { key: 'action', title: 'Action' },
         { key: 'players', title: 'Players' },
+        { key: 'vote', title: 'Last Vote' },
     ]);
 
     const renderScene = SceneMap({
         board: BoardRoute,
         players: PlayersRoute,
         action: ActionRoute,
+        vote: LastVoting,
     });
     const renderTabBar = props => (
         <TabBar

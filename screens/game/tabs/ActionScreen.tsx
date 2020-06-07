@@ -1,17 +1,24 @@
 import React from 'react';
 import {Text} from 'react-native';
-import {ChancellorNominationScreen} from "./ChancellorNominationScreen";
-import {ChancellorVotingScreen} from "./ChancellorVotingScreen";
-import {PresidentDrawingPoliciesScreen} from "./PresidentDrawingPoliciesScreen";
-import {ChancellorEnactingPolicyScreen} from "./ChancellorEnactingPolicyScreen";
-import {ExecutionScreen} from "./ExecutionScreen";
-import {PresidentLooksPoliciesScreen} from "./PresidentLooksPoliciesScreen";
-import {InvestigatingLoyaltyScreen} from "./InvestigatingLoyaltyScreen";
-import {InvestigatingLoyaltyConfirmScreen} from "./InvestigatingLoyaltyConfirmScreen";
-import {PresidentPickScreen} from "./PresidentPickScreen";
-import {GameOverScreen} from "./GameOverScreen";
+import {ChancellorNominationScreen} from "../actions/ChancellorNominationScreen";
+import {ChancellorVotingScreen} from "../actions/ChancellorVotingScreen";
+import {PresidentDrawingPoliciesScreen} from "../actions/PresidentDrawingPoliciesScreen";
+import {ChancellorEnactingPolicyScreen} from "../actions/ChancellorEnactingPolicyScreen";
+import {ExecutionScreen} from "../actions/ExecutionScreen";
+import {PresidentLooksPoliciesScreen} from "../actions/PresidentLooksPoliciesScreen";
+import {InvestigatingLoyaltyScreen} from "../actions/InvestigatingLoyaltyScreen";
+import {InvestigatingLoyaltyConfirmScreen} from "../actions/InvestigatingLoyaltyConfirmScreen";
+import {PresidentPickScreen} from "../actions/PresidentPickScreen";
+import {GameOverScreen} from "../actions/GameOverScreen";
+import {DeadScreen} from "../actions/DeadScreen";
 
 export function ActionScreen({state, sendCommand, userName, onLeaveRoom}) {
+    const isAlive = state.game.players[userName].is_alive;
+
+    if(!isAlive && state.game.state != "game_over"){
+        return <DeadScreen onLeaveRoom={onLeaveRoom}/>
+    }
+
     switch (state.game.state) {
         case "nominating_chancellor":
             return <ChancellorNominationScreen

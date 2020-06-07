@@ -5,7 +5,7 @@ import {LobbyScreen} from "./game/LobbyScreen";
 import {JoinRoom} from "./game/JoinScreen";
 
 export default function GameScreen() {
-    const [userName, setUserName] = useState('');
+    const [userName, setUserName] = useState('DAREK');
     const [state, setState] = useState();
     const [channel, setChannel] = useState();
     const [socket, setSocket] = useState();

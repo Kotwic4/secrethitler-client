@@ -1,13 +1,9 @@
 import React from 'react';
 import {StyleSheet, View} from "react-native";
-import {PlayerBox} from "../../components/PlayerBox";
-import {StyledButton} from "../../components/StyledButton";
-import {getPlayerInfo} from "../../utils/getPlayerInfo";
-import {Title} from "../../components/Title";
-
-const LIBERAL = require('../../assets/images/liberal_role.png');
-const FASCIST = require('../../assets/images/fascist_role.png');
-const HITLER = require('../../assets/images/hitler_role.png');
+import {PlayerBox} from "../../../components/PlayerBox";
+import {StyledButton} from "../../../components/StyledButton";
+import {getPlayerInfo} from "../../../utils/getPlayerInfo";
+import {Title} from "../../../components/Title";
 
 export function PlayersScreen({state, userName, onLeaveRoom}) {
     const players = Object.keys(state.game.players);

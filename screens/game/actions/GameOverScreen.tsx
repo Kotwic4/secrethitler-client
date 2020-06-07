@@ -1,11 +1,11 @@
 import React from 'react';
-import {Title} from "../../components/Title";
-import {StyledButton} from "../../components/StyledButton";
+import {Title} from "../../../components/Title";
+import {StyledButton} from "../../../components/StyledButton";
 import {Image, StyleSheet, View} from "react-native";
 
 
-const LIBERAL = require('../../assets/images/liberal_party.png');
-const FACIST = require('../../assets/images/fascist_party.png');
+const LIBERAL = require('../../../assets/images/liberal_party.png');
+const FACIST = require('../../../assets/images/fascist_party.png');
 
 export function GameOverScreen({state, onLeaveRoom}) {
 
