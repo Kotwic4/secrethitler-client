@@ -18,79 +18,81 @@ https://github.com/mkaput/secrethitler-server
 Below are sample screenshots from current version of game:
 
 ### Log in:
-![](./docs/login.jpg)
 
-![](./docs/login2.jpg)
+<img src="./docs/login.jpg" width="300">
+
+<img src="./docs/login2.jpg" width="300">
 
 ### Lobby:
-![](./docs/lobby.jpg)
 
-![](./docs/lobby2.jpg)
+<img src="./docs/lobby.jpg" width="300">
+
+<img src="./docs/lobby2.jpg" width="300">
 
 ### Board
 
-![](./docs/board.jpg)
+<img src="./docs/board.jpg" width="300">
 
-![](./docs/board2.jpg)
+<img src="./docs/board2.jpg" width="300">
 
 ### Players screen
 
-![](./docs/players.jpg)
+<img src="./docs/players.jpg" width="300">
 
-![](./docs/players2.jpg)
+<img src="./docs/players2.jpg" width="300">
 
-![](./docs/players3.jpg)
+<img src="./docs/players3.jpg" width="300">
 
 ### Nomination
 
-![](./docs/nomination.jpg)
+<img src="./docs/nomination.jpg" width="300">
 
-![](./docs/nomination2.jpg)
+<img src="./docs/nomination2.jpg" width="300">
 
-![](./docs/nomination3.jpg)
+<img src="./docs/nomination3.jpg" width="300">
 
 ### Voting
 
-![](./docs/voting.jpg)
+<img src="./docs/voting.jpg" width="300">
 
-![](./docs/voting2.jpg)
+<img src="./docs/voting2.jpg" width="300">
 
 ### Dismiss policy
 
-![](./docs/dismiss.jpg)
+<img src="./docs/dismiss.jpg" width="300">
 
-![](./docs/dismiss2.jpg)
+<img src="./docs/dismiss2.jpg" width="300">
 
 ### Enact policy
 
-![](./docs/enact.jpg)
+<img src="./docs/enact.jpg" width="300">
 
 ### Last vote
 
-![](./docs/lastvote.jpg)
+<img src="./docs/lastvote.jpg" width="300">
 
 ### Eliminate player
 
-![](./docs/eliminate.jpg)
+<img src="./docs/eliminate.jpg" width="300">
 
 ### Look at future policies
 
-![](./docs/look.jpg)
+<img src="./docs/look.jpg" width="300">
 
 ### Check player loyality
 
-![](./docs/loyality.jpg)
+<img src="./docs/loyality.jpg" width="300">
 
-![](./docs/loyality2.jpg)
+<img src="./docs/loyality2.jpg" width="300">
 
 ### Next president choosing
 
-![](./docs/nextPresident.jpg)
+<img src="./docs/nextPresident.jpg" width="300">
 
 ### Dead player
 
-![](./docs/dead.jpg)
+<img src="./docs/dead.jpg" width="300">
 
 ### Game over
 
-![](./docs/over.jpg)
+<img src="./docs/over.jpg" width="300">
